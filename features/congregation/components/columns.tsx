@@ -3,7 +3,7 @@
 import { createColumnHelper } from "@tanstack/react-table";
 import { Badge } from "@/components/ui/badge";
 import { type DataTableFeatures } from "@/components/layouts/data-table-features";
-import { Congregation } from "./types/congregation";
+import { Congregation } from "../types/congregation";
 
 const columnHelper = createColumnHelper<DataTableFeatures, Congregation>();
 

@@ -1,3 +1,5 @@
+"use client";
+
 import { DataTable } from "@/components/layouts/data-table";
 import { Button } from "@/components/ui/button";
 import {
@@ -27,7 +29,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { columms } from "@/features/congregation/columns";
+import { columms } from "@/features/congregation/components/columns";
+import { useCongregations } from "@/features/congregation/hooks/use-congregations";
 
 export default function Page() {
   const data = [
@@ -185,6 +188,9 @@ export default function Page() {
       leadership: null,
     },
   ];
+
+  const dataApi = useCongregations();
+  console.log(dataApi);
 
   return (
     <div className="space-y-2">
