@@ -1,8 +1,8 @@
 import { FieldGroup } from "@/components/ui/field";
+import { toast } from "@/components/ui/toast";
 import { useAppForm } from "@/hooks/use-app-form";
 import { useMutation } from "@tanstack/react-query";
 import { addCongregation } from "../apis/congregation";
-import { CreateCongregationPayload } from "../types/create-congregation-payload";
 
 export default function AddCongregationForm() {
   const { mutateAsync } = useMutation({
@@ -19,8 +19,11 @@ export default function AddCongregationForm() {
     },
 
     onSubmit: ({ value }) => {
-      console.log(value);
-      mutateAsync(value);
+      toast.promise(mutateAsync(value), {
+        loading: "Menambahkan data...",
+        success: "Data berhasil ditambahkan",
+        error: "Gagal menambahkan data",
+      });
     },
   });
 

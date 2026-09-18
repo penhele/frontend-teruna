@@ -4,6 +4,7 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import QueryProvider from "@/providers/query-provider";
+import { Toaster } from "@/components/ui/toast";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -39,6 +40,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <QueryProvider>
         <body className="min-h-full flex flex-col">{children}</body>
+        <Toaster />
       </QueryProvider>
     </html>
   );
