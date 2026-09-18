@@ -14,7 +14,7 @@ export default function AddCongregationForm() {
       name: "",
       phone: "",
       birth: "",
-      regionId: "82aed6c8-3bd4-48cd-97ce-a0888581149c",
+      regionId: "",
       pelkatId: "aa095f63-ac60-4d05-8ff3-2c716ea9806e",
     },
 
@@ -46,6 +46,18 @@ export default function AddCongregationForm() {
 
           <form.AppField name="phone">
             {(field) => <field.InputField label="No. HP" />}
+          </form.AppField>
+
+          <form.AppField name="regionId">
+            {(field) => (
+              <field.SelectField
+                label="Sektor"
+                items={[
+                  { label: "1", value: "1" },
+                  { label: "2", value: "2" },
+                ]}
+              />
+            )}
           </form.AppField>
         </FieldGroup>
 
