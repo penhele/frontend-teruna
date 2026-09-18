@@ -11,6 +11,9 @@ export const columms = columnHelper.columns([
   columnHelper.accessor("id", {
     header: "ID",
   }),
+  columnHelper.accessor("name", {
+    header: "Nama Lengkap",
+  }),
   columnHelper.accessor("phone", {
     header: "Kontak",
   }),
