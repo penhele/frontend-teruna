@@ -12,7 +12,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { FieldGroup } from "@/components/ui/field";
 import AddCongregationForm from "@/features/congregation/components/add-congregation-form";
 import { columms } from "@/features/congregation/components/columns";
 import { useCongregations } from "@/features/congregation/hooks/use-congregations";

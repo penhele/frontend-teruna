@@ -4,6 +4,7 @@ import { useAppForm } from "@/hooks/use-app-form";
 import { useMutation } from "@tanstack/react-query";
 import { addCongregation } from "../api/congregation";
 import { useRegions } from "@/features/region/hooks/use-regions";
+import { usePelkat } from "@/features/pelkat/hooks/use-pelkat";
 
 export default function AddCongregationForm() {
   const { mutateAsync } = useMutation({
@@ -16,7 +17,7 @@ export default function AddCongregationForm() {
       phone: "",
       birth: "",
       regionId: "",
-      pelkatId: "aa095f63-ac60-4d05-8ff3-2c716ea9806e",
+      pelkatId: "",
     },
 
     onSubmit: ({ value }) => {
@@ -29,7 +30,13 @@ export default function AddCongregationForm() {
   });
 
   const { data: regions = [] } = useRegions();
-  const regionItems = regions?.map((item) => ({
+  const regionItems = regions.map((item) => ({
+    label: item.name,
+    value: item.id,
+  }));
+
+  const { data: pelkat = [] } = usePelkat();
+  const pelkatItems = pelkat.map((item) => ({
     label: item.name,
     value: item.id,
   }));
@@ -58,6 +65,12 @@ export default function AddCongregationForm() {
           <form.AppField name="regionId">
             {(field) => (
               <field.SelectField label="Sektor" items={regionItems} />
+            )}
+          </form.AppField>
+
+          <form.AppField name="pelkatId">
+            {(field) => (
+              <field.SelectField label="Pelkat" items={pelkatItems} />
             )}
           </form.AppField>
         </FieldGroup>
