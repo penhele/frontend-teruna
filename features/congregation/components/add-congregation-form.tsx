@@ -2,7 +2,8 @@ import { FieldGroup } from "@/components/ui/field";
 import { toast } from "@/components/ui/toast";
 import { useAppForm } from "@/hooks/use-app-form";
 import { useMutation } from "@tanstack/react-query";
-import { addCongregation } from "../apis/congregation";
+import { addCongregation } from "../api/congregation";
+import { useRegions } from "@/features/region/hooks/use-regions";
 
 export default function AddCongregationForm() {
   const { mutateAsync } = useMutation({
@@ -27,6 +28,12 @@ export default function AddCongregationForm() {
     },
   });
 
+  const { data: regions = [] } = useRegions();
+  const regionItems = regions?.map((item) => ({
+    label: item.name,
+    value: item.id,
+  }));
+
   return (
     <form.AppForm>
       <form
@@ -50,13 +57,7 @@ export default function AddCongregationForm() {
 
           <form.AppField name="regionId">
             {(field) => (
-              <field.SelectField
-                label="Sektor"
-                items={[
-                  { label: "1", value: "1" },
-                  { label: "2", value: "2" },
-                ]}
-              />
+              <field.SelectField label="Sektor" items={regionItems} />
             )}
           </form.AppField>
         </FieldGroup>

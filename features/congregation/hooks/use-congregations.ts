@@ -1,5 +1,5 @@
 import { queryOptions, useQuery } from "@tanstack/react-query";
-import { getCongregations } from "../apis/congregation";
+import { getCongregations } from "../api/congregation";
 
 export const useCongregations = () => {
   return useQuery(
