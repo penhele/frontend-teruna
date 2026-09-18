@@ -30,7 +30,11 @@ export default function Page() {
       </div>
 
       <Dialog>
-        <form action="">
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+          }}
+        >
           <DialogTrigger render={<Button>Tambah Teruna Baru</Button>} />
 
           <DialogContent className={"min-w-xl"}>
@@ -43,63 +47,6 @@ export default function Page() {
             </DialogHeader>
 
             <AddCongregationForm />
-
-            <FieldGroup className="grid grid-cols-6">
-              {/* <Field className="col-span-6">
-                <FieldLabel>Nama Lengkap</FieldLabel>
-                <Input />
-              </Field>
-              <Field className="col-span-3">
-                <FieldLabel>Nama Panggilan</FieldLabel>
-                <Input />
-              </Field>
-              <Field className="col-span-3">
-                <FieldLabel>No. HP</FieldLabel>
-                <Input />
-              </Field>
-              <Field className="col-span-2">
-                <FieldLabel>Jenis Kelamin</FieldLabel>
-                <Select
-                  items={[
-                    { label: "Laki-laki", value: "laki-laki" },
-                    { label: "Perempuan", value: "perempuan" },
-                  ]}
-                >
-                  <SelectTrigger>
-                    <SelectValue />
-                  </SelectTrigger>
-
-                  <SelectContent>
-                    <SelectGroup>
-                      {[
-                        { label: "Laki-laki", value: "laki-laki" },
-                        { label: "Perempuan", value: "perempuan" },
-                      ].map((item) => (
-                        <SelectItem key={item.value} value={item.value}>
-                          {item.label}
-                        </SelectItem>
-                      ))}
-                    </SelectGroup>
-                  </SelectContent>
-                </Select>
-              </Field>
-              <Field className="col-span-2">
-                <FieldLabel>Tanggal Lahir</FieldLabel>
-                <Input />
-              </Field>
-              <Field className="col-span-2">
-                <FieldLabel>Kelas</FieldLabel>
-                <Input />
-              </Field>
-              <Field className="col-span-3">
-                <FieldLabel>Sektor</FieldLabel>
-                <Input />
-              </Field>
-              <Field className="col-span-3">
-                <FieldLabel>Status Keaktifan</FieldLabel>
-                <Input />
-              </Field> */}
-            </FieldGroup>
 
             <DialogFooter>
               <DialogClose
