@@ -51,12 +51,13 @@ export default function AddCongregationForm() {
           form.handleSubmit();
         }}
       >
-        <FieldGroup className="">
+        <FieldGroup className="grid grid-cols-2">
           <form.AppField name="name">
             {(field) => (
               <field.InputField
                 label="Nama Lengkap"
                 placeholder="Masukkan nama lengkap"
+                className="col-span-2"
               />
             )}
           </form.AppField>

@@ -4,6 +4,17 @@ import { type DataTableFeatures } from "@/components/layouts/data-table-features
 import { formatDate } from "@/lib/utils/date";
 import { createColumnHelper } from "@tanstack/react-table";
 import { Congregation } from "../types/congregation";
+import { Popover } from "@base-ui/react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuShortcut,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Button } from "@/components/ui/button";
+import { Ellipsis, Pencil } from "lucide-react";
 
 const columnHelper = createColumnHelper<DataTableFeatures, Congregation>();
 
@@ -54,6 +65,35 @@ export const columms = columnHelper.columns([
       }
 
       return <span>{age} tahun</span>;
+    },
+  }),
+
+  columnHelper.display({
+    id: "actions",
+    header: "",
+    cell: ({ row }) => {
+      return (
+        <DropdownMenu>
+          <DropdownMenuTrigger
+            render={
+              <Button variant={"ghost"} size={"icon-xs"}>
+                <Ellipsis />
+              </Button>
+            }
+          />
+
+          <DropdownMenuContent>
+            <DropdownMenuGroup>
+              <DropdownMenuItem>
+                Edit
+                <DropdownMenuShortcut>
+                  <Pencil />
+                </DropdownMenuShortcut>
+              </DropdownMenuItem>
+            </DropdownMenuGroup>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      );
     },
   }),
 ]);

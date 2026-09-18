@@ -1,17 +1,19 @@
 import { useFieldContext } from "@/hooks/use-app-form";
 import { Field, FieldLabel } from "../ui/field";
 import { Input } from "../ui/input";
+import { cn } from "cn";
 
 interface Props {
   label: string;
   placeholder?: string;
+  className?: string;
 }
 
-export default function InputField({ label, placeholder }: Props) {
+export default function InputField({ label, placeholder, className }: Props) {
   const field = useFieldContext<string>();
 
   return (
-    <Field>
+    <Field className={cn(className)}>
       <FieldLabel>{label}</FieldLabel>
       <Input
         placeholder={placeholder}
