@@ -1,3 +1,6 @@
+import { Pelkat } from "@/features/pelkat/types/pelkat";
+import { Region } from "@/features/region/types/region";
+
 export type Congregation = {
   id: string;
   name: string;
@@ -10,21 +13,6 @@ export type Congregation = {
   region: Region;
   pelkat: Pelkat;
   leadership: Leadership | null;
-};
-
-type Region = {
-  id: string;
-  name: string;
-  createdAt: string;
-  updatedAt: string;
-};
-
-type Pelkat = {
-  id: string;
-  name: string;
-  description: string;
-  createdAt: string;
-  updatedAt: string;
 };
 
 type Leadership = {

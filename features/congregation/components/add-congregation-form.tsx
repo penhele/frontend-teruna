@@ -26,6 +26,8 @@ export default function AddCongregationForm() {
         success: "Data berhasil ditambahkan",
         error: "Gagal menambahkan data",
       });
+
+      console.log(value);
     },
   });
 
@@ -51,26 +53,49 @@ export default function AddCongregationForm() {
       >
         <FieldGroup className="">
           <form.AppField name="name">
-            {(field) => <field.InputField label="Nama Lengkap" />}
+            {(field) => (
+              <field.InputField
+                label="Nama Lengkap"
+                placeholder="Masukkan nama lengkap"
+              />
+            )}
           </form.AppField>
 
           <form.AppField name="birth">
-            {(field) => <field.InputField label="Tanggal Lahir" />}
+            {(field) => (
+              <field.CalendarField
+                placeholder="Pilih tanggal lahir"
+                label="Tanggal Lahir"
+              />
+            )}
           </form.AppField>
 
           <form.AppField name="phone">
-            {(field) => <field.InputField label="No. HP" />}
+            {(field) => (
+              <field.InputField
+                label="No. HP"
+                placeholder="Masukkan nomor HP"
+              />
+            )}
           </form.AppField>
 
           <form.AppField name="regionId">
             {(field) => (
-              <field.SelectField label="Sektor" items={regionItems} />
+              <field.SelectField
+                label="Sektor"
+                items={regionItems}
+                placeholder="Pilih Sektor"
+              />
             )}
           </form.AppField>
 
           <form.AppField name="pelkatId">
             {(field) => (
-              <field.SelectField label="Pelkat" items={pelkatItems} />
+              <field.SelectField
+                label="Pelkat"
+                items={pelkatItems}
+                placeholder="Pilih Pelkat"
+              />
             )}
           </form.AppField>
         </FieldGroup>

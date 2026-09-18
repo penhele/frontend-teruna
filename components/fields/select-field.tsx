@@ -12,9 +12,10 @@ import { Field, FieldLabel } from "../ui/field";
 interface Props {
   items: { label: string; value: string }[];
   label: string;
+  placeholder?: string;
 }
 
-export default function SelectField({ items, label }: Props) {
+export default function SelectField({ items, label, placeholder }: Props) {
   const field = useFieldContext<string>();
 
   return (
@@ -29,9 +30,10 @@ export default function SelectField({ items, label }: Props) {
             field.handleChange(value);
           }
         }}
+        
       >
         <SelectTrigger>
-          <SelectValue />
+          <SelectValue placeholder={placeholder}/>
         </SelectTrigger>
 
         <SelectContent>
