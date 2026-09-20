@@ -46,6 +46,7 @@ export default function AddCongregationForm() {
   return (
     <form.AppForm>
       <form
+        id="add-congregation-form"
         onSubmit={(e) => {
           e.preventDefault();
           form.handleSubmit();
@@ -100,8 +101,6 @@ export default function AddCongregationForm() {
             )}
           </form.AppField>
         </FieldGroup>
-
-        <form.SubmitButton />
       </form>
     </form.AppForm>
   );

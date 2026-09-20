@@ -10,7 +10,7 @@ export const { fieldContext, formContext, useFieldContext, useFormContext } =
 export const { useAppForm } = createFormHook({
   fieldContext,
   formContext,
-fieldComponents: {
+  fieldComponents: {
     InputField,
     SelectField,
     CalendarField,

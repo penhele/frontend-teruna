@@ -30,10 +30,9 @@ export default function SelectField({ items, label, placeholder }: Props) {
             field.handleChange(value);
           }
         }}
-        
       >
         <SelectTrigger>
-          <SelectValue placeholder={placeholder}/>
+          <SelectValue placeholder={placeholder} />
         </SelectTrigger>
 
         <SelectContent>
