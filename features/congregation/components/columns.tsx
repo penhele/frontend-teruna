@@ -1,10 +1,7 @@
 "use client";
 
 import { type DataTableFeatures } from "@/components/layouts/data-table-features";
-import { formatDate } from "@/lib/utils/date";
-import { createColumnHelper } from "@tanstack/react-table";
-import { Congregation } from "../types/congregation";
-import { Popover } from "@base-ui/react";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -13,8 +10,22 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Button } from "@/components/ui/button";
+import { formatDate } from "@/lib/utils/date";
+import { createColumnHelper } from "@tanstack/react-table";
 import { Ellipsis, Pencil } from "lucide-react";
+import { Congregation } from "../types/congregation";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import EditCongregationForm from "./edit-congregation-form";
+import { CongregationActions } from "./congregation-actions";
 
 const columnHelper = createColumnHelper<DataTableFeatures, Congregation>();
 
@@ -72,28 +83,7 @@ export const columms = columnHelper.columns([
     id: "actions",
     header: "",
     cell: ({ row }) => {
-      return (
-        <DropdownMenu>
-          <DropdownMenuTrigger
-            render={
-              <Button variant={"ghost"} size={"icon-xs"}>
-                <Ellipsis />
-              </Button>
-            }
-          />
-
-          <DropdownMenuContent>
-            <DropdownMenuGroup>
-              <DropdownMenuItem>
-                Edit
-                <DropdownMenuShortcut>
-                  <Pencil />
-                </DropdownMenuShortcut>
-              </DropdownMenuItem>
-            </DropdownMenuGroup>
-          </DropdownMenuContent>
-        </DropdownMenu>
-      );
+      return <CongregationActions congregation={row.original} />;
     },
   }),
 ]);
