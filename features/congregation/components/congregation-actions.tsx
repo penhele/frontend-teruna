@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Ellipsis, Pencil, Trash2 } from "lucide-react";
+import { Ellipsis, Info, Pencil, Trash2 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -61,6 +61,12 @@ export function CongregationActions({ congregation }: Props) {
 
         <DropdownMenuContent>
           <DropdownMenuGroup>
+            <DropdownMenuItem>
+              Detail
+              <DropdownMenuShortcut>
+                <Info />
+              </DropdownMenuShortcut>
+            </DropdownMenuItem>
             <DropdownMenuItem onClick={() => setEditOpen(true)}>
               Edit
               <DropdownMenuShortcut>
