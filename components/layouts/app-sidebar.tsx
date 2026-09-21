@@ -3,31 +3,16 @@ import {
   SidebarContent,
   SidebarFooter,
   SidebarGroup,
+  SidebarGroupLabel,
   SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { LayoutDashboard, UserGroup } from "lucide-react";
-import NavMain from "./nav-main";
 import { ROUTES } from "@/constants/routes";
+import { Database, LayoutDashboard, SquareUser, Users } from "lucide-react";
 
 export function AppSidebar() {
-  const data = {
-    navMain: [
-      {
-        title: "Pelkat",
-        url: "#",
-        icon: UserGroup,
-        isActive: true,
-        items: [
-          { title: "Persekutuan Teruna", url: ROUTES.DASHBOARD_PELKAT_PT },
-          { title: "Gerakan Pemuda", url: "#" },
-        ],
-      },
-    ],
-  };
-
   return (
     <Sidebar collapsible="icon">
       <SidebarHeader />
@@ -43,9 +28,32 @@ export function AppSidebar() {
           </SidebarMenu>
         </SidebarGroup>
 
-        <NavMain items={data.navMain} />
+        <SidebarGroup>
+          <SidebarGroupLabel>Penyimpanan</SidebarGroupLabel>
 
-        <SidebarGroup />
+          <SidebarMenu>
+            <SidebarMenuItem>
+              <SidebarMenuButton
+                render={
+                  <a href={ROUTES.DASHBOARD_DATABASE}>
+                    <Users />
+                    Teruna
+                  </a>
+                }
+              />
+            </SidebarMenuItem>
+            <SidebarMenuItem>
+              <SidebarMenuButton
+                render={
+                  <a href={ROUTES.DASHBOARD_DATABASE}>
+                    <SquareUser />
+                    Kakak Layan
+                  </a>
+                }
+              />
+            </SidebarMenuItem>
+          </SidebarMenu>
+        </SidebarGroup>
       </SidebarContent>
       <SidebarFooter />
     </Sidebar>

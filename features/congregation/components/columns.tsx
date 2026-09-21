@@ -26,6 +26,7 @@ import {
 } from "@/components/ui/dialog";
 import EditCongregationForm from "./edit-congregation-form";
 import { CongregationActions } from "./congregation-actions";
+import SektorBadge from "@/components/badges/sektor-badge";
 
 const columnHelper = createColumnHelper<DataTableFeatures, Congregation>();
 
@@ -46,7 +47,8 @@ export const columms = columnHelper.columns([
   columnHelper.accessor("region.name", {
     header: "Sektor",
     cell: ({ row }) => {
-      return <span>Sektor {row.original.region.name}</span>;
+      // return <span>Sektor {row.original.region.name}</span>;
+      return <SektorBadge sektor={row.original.region.name} />;
     },
   }),
 
