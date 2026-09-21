@@ -1,6 +1,11 @@
 "use client";
 
-import { useTable, type ColumnDef, type RowData } from "@tanstack/react-table";
+import {
+  useTable,
+  type ColumnVisibilityState,
+  type ColumnDef,
+  type RowData,
+} from "@tanstack/react-table";
 
 import {
   Table,
@@ -13,6 +18,14 @@ import {
 
 import { features, type DataTableFeatures } from "./data-table-features";
 import { Button } from "../ui/button";
+import React from "react";
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuCheckboxItem,
+} from "../ui/dropdown-menu";
+import { Tabs, TabsList, TabsTrigger } from "../ui/tabs";
 
 interface DataTableProps<TData extends RowData> {
   columns: ColumnDef<DataTableFeatures, TData>[];
@@ -23,14 +36,58 @@ export function DataTable<TData extends RowData>({
   columns,
   data,
 }: DataTableProps<TData>) {
+  const [columnVisibility, setColumnVisibility] =
+    React.useState<ColumnVisibilityState>({});
+
   const table = useTable({
     features,
     data,
     columns,
+    onColumnVisibilityChange: setColumnVisibility,
+    state: {
+      columnVisibility,
+    },
   });
 
   return (
-    <div className="">
+    <div className="space-y-4">
+      <div className="flex items-center">
+        <Tabs defaultValue={"all"}>
+          <TabsList>
+            <TabsTrigger value={"all"}>All</TabsTrigger>
+            <TabsTrigger value={"active"}>Active</TabsTrigger>
+            <TabsTrigger value={"inactive"}>Inactive</TabsTrigger>
+          </TabsList>
+        </Tabs>
+
+        <DropdownMenu>
+          <DropdownMenuTrigger
+            render={<Button variant="outline" className="ml-auto" />}
+          >
+            Columns
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end">
+            {table
+              .getAllColumns()
+              .filter((column) => column.getCanHide())
+              .map((column) => {
+                return (
+                  <DropdownMenuCheckboxItem
+                    key={column.id}
+                    className="capitalize"
+                    checked={column.getIsVisible()}
+                    onCheckedChange={(value) =>
+                      column.toggleVisibility(!!value)
+                    }
+                  >
+                    {column.id}
+                  </DropdownMenuCheckboxItem>
+                );
+              })}
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </div>
+
       <div className="overflow-hidden rounded-md border">
         <Table>
           <TableHeader>

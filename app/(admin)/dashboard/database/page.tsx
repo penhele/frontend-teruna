@@ -68,14 +68,6 @@ export default function Page() {
       </div>
 
       <div className="space-y-4">
-        <Tabs defaultValue={'all'}>
-          <TabsList>
-            <TabsTrigger value={"all"}>All</TabsTrigger>
-            <TabsTrigger value={"active"}>Active</TabsTrigger>
-            <TabsTrigger value={"inactive"}>Inactive</TabsTrigger>
-          </TabsList>
-        </Tabs>
-
         <Dialog>
           <DialogTrigger
             render={

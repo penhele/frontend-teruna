@@ -1,43 +1,25 @@
 "use client";
 
+import SektorBadge from "@/components/badges/sektor-badge";
 import { type DataTableFeatures } from "@/components/layouts/data-table-features";
-import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuShortcut,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { formatDate } from "@/lib/utils/date";
 import { createColumnHelper } from "@tanstack/react-table";
-import { Ellipsis, Pencil } from "lucide-react";
 import { Congregation } from "../types/congregation";
-import {
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import EditCongregationForm from "./edit-congregation-form";
 import { CongregationActions } from "./congregation-actions";
-import SektorBadge from "@/components/badges/sektor-badge";
 
 const columnHelper = createColumnHelper<DataTableFeatures, Congregation>();
 
 export const columms = columnHelper.columns([
   columnHelper.accessor("name", {
+    id: "nama",
     header: "Nama Lengkap",
   }),
   columnHelper.accessor("phone", {
+    id: "kontak",
     header: "Kontak",
   }),
   columnHelper.accessor("birth", {
+    id: "tanggal lahir",
     header: "Tanggal Lahir",
     cell: ({ row }) => {
       return <span>{formatDate(row.getValue("birth"))}</span>;
@@ -45,6 +27,7 @@ export const columms = columnHelper.columns([
   }),
 
   columnHelper.accessor("region.name", {
+    id: "sektor",
     header: "Sektor",
     cell: ({ row }) => {
       // return <span>Sektor {row.original.region.name}</span>;
@@ -53,6 +36,7 @@ export const columms = columnHelper.columns([
   }),
 
   columnHelper.accessor("pelkat.name", {
+    id: "pelkat",
     header: "Pelkat",
     cell: ({ row }) => {
       return <span>{row.original.pelkat.name}</span>;
@@ -60,7 +44,7 @@ export const columms = columnHelper.columns([
   }),
 
   columnHelper.display({
-    id: "age",
+    id: "Umur",
     header: "Umur",
     cell: ({ row }) => {
       const birthDate = new Date(row.original.birth);
