@@ -22,8 +22,22 @@ export const columms = columnHelper.columns([
     id: "tanggal lahir",
     header: "Tanggal Lahir",
     cell: ({ row }) => {
-      return <span>{formatDate(row.getValue("birth"))}</span>;
+      return <span>{formatDate(row.original.birth)}</span>;
     },
+  }),
+
+  columnHelper.accessor("isActive", {
+    id: "aktif",
+    header: "Aktif",
+  }),
+
+  columnHelper.accessor("isSidi", {
+    id: "sidi",
+    header: "Sidi",
+  }),
+  columnHelper.accessor("sidiYear", {
+    id: "tahun sidi",
+    header: "Tahun Sidi",
   }),
 
   columnHelper.accessor("region.name", {

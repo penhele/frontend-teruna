@@ -29,7 +29,7 @@ export function AppSidebar() {
         </SidebarGroup>
 
         <SidebarGroup>
-          <SidebarGroupLabel>Penyimpanan</SidebarGroupLabel>
+          <SidebarGroupLabel>Database</SidebarGroupLabel>
 
           <SidebarMenu>
             <SidebarMenuItem>

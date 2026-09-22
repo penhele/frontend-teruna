@@ -6,6 +6,9 @@ export type Congregation = {
   name: string;
   phone: string;
   birth: string;
+  isActive: boolean;
+  isSidi: boolean;
+  sidiYear: string;
   regionId: string;
   pelkatId: string;
   createdAt: string;
