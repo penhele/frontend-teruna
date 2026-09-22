@@ -22,8 +22,8 @@ export const addCongregation = async (body: CreateCongregationPayload) => {
 };
 
 export const updateCongregation = async (
-  body: UpdateCongregationPayload,
   id: string,
+  body: UpdateCongregationPayload,
 ) => {
   const { data } = await apiClient.patch(`/congregations/${id}`, body);
 

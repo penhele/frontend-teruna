@@ -7,6 +7,7 @@ import { createColumnHelper } from "@tanstack/react-table";
 import { Congregation } from "../types/congregation";
 import { CongregationActions } from "./congregation-actions";
 import ActiveBadge from "@/components/badges/active-badge";
+import ActiveStatus from "@/components/active-status";
 
 const columnHelper = createColumnHelper<DataTableFeatures, Congregation>();
 
@@ -38,7 +39,10 @@ export const columms = columnHelper.columns([
       return Boolean(row.getValue(columnId)) === Boolean(filterValue);
     },
     cell: ({ row }) => {
-      return <ActiveBadge isActive={row.original.isActive} />;
+      return (
+        <ActiveStatus id={row.original.id} isActive={row.original.isActive} />
+      );
+      // return <ActiveBadge isActive={row.original.isActive} />;
     },
   }),
 
