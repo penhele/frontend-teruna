@@ -9,14 +9,15 @@ import { format, parseISO } from "date-fns";
 import { id } from "date-fns/locale";
 import { useState } from "react";
 import { cn } from "cn";
-import { formatDate } from "@/lib/utils/date";
+import { formatDate } from "@/lib/utils/format-date";
 
 interface Props {
   label: string;
   placeholder: string;
+  disabled?: boolean;
 }
 
-export default function CalendarField({ label, placeholder }: Props) {
+export default function CalendarField({ label, placeholder, disabled }: Props) {
   const field = useFieldContext<string>();
 
   const currentValue = field.state.value
@@ -59,6 +60,7 @@ export default function CalendarField({ label, placeholder }: Props) {
                 setCalendarMonth(selectedDate);
               }
             }}
+            disabled={disabled}
           />
         </PopoverContent>
       </Popover>

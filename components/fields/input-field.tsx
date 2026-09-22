@@ -7,9 +7,15 @@ interface Props {
   label: string;
   placeholder?: string;
   className?: string;
+  disabled?: boolean;
 }
 
-export default function InputField({ label, placeholder, className }: Props) {
+export default function InputField({
+  label,
+  placeholder,
+  className,
+  disabled,
+}: Props) {
   const field = useFieldContext<string>();
 
   return (
@@ -21,6 +27,7 @@ export default function InputField({ label, placeholder, className }: Props) {
         onChange={(e) => {
           field.handleChange(e.target.value);
         }}
+        disabled={disabled}
       />
     </Field>
   );

@@ -10,11 +10,11 @@ interface Props {
 }
 
 export default function EditCongregationForm({ id }: Props) {
-  const { data } = useCongregation(id);
+  const { data: congregation, isPending } = useCongregation(id);
 
   const { mutateAsync } = useMutation({
     mutationFn: (body: UpdateCongregationPayload) =>
-      updateCongregation(body, id),
+      updateCongregation(id, body),
   });
 
   const queryClient = useQueryClient();
@@ -32,14 +32,15 @@ export default function EditCongregationForm({ id }: Props) {
   return (
     <CongregationForm
       defaultValues={{
-        name: data?.name ?? "",
-        birth: data?.birth ?? "",
-        phone: data?.phone ?? "",
-        pelkatId: data?.pelkatId ?? "",
-        regionId: data?.regionId ?? "",
+        name: congregation?.name ?? "",
+        birth: congregation?.birth ?? "",
+        phone: congregation?.phone ?? "",
+        pelkatId: congregation?.pelkatId ?? "",
+        regionId: congregation?.regionId ?? "",
       }}
       onSubmit={handleSubmit}
       formId="edit-congregation-form"
+      isPending={isPending}
     />
   );
 }

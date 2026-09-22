@@ -14,6 +14,7 @@ interface Props {
   label: string;
   placeholder?: string;
   readOnly?: boolean;
+  disabled?: boolean;
 }
 
 export default function SelectField({
@@ -21,6 +22,7 @@ export default function SelectField({
   label,
   placeholder,
   readOnly,
+  disabled,
 }: Props) {
   const field = useFieldContext<string>();
 
@@ -37,6 +39,7 @@ export default function SelectField({
           }
         }}
         readOnly={readOnly}
+        disabled={disabled}
       >
         <SelectTrigger>
           <SelectValue placeholder={placeholder} />

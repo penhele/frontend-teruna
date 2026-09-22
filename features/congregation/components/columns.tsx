@@ -2,7 +2,7 @@
 
 import SektorBadge from "@/components/badges/sektor-badge";
 import { type DataTableFeatures } from "@/components/layouts/data-table-features";
-import { formatDate } from "@/lib/utils/date";
+import { formatDate } from "@/lib/utils/format-date";
 import { createColumnHelper } from "@tanstack/react-table";
 import { Congregation } from "../types/congregation";
 import { CongregationActions } from "./congregation-actions";

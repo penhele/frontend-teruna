@@ -19,12 +19,14 @@ interface Props {
     pelkatId: string;
   }) => void;
   formId: string;
+  isPending?: boolean;
 }
 
 export default function CongregationForm({
   onSubmit,
   defaultValues,
   formId,
+  isPending,
 }: Props) {
   const form = useAppForm({
     defaultValues: defaultValues,
@@ -61,6 +63,7 @@ export default function CongregationForm({
                 label="Nama Lengkap"
                 placeholder="Masukkan nama lengkap"
                 className="col-span-2"
+                disabled={isPending}
               />
             )}
           </form.AppField>
@@ -70,6 +73,7 @@ export default function CongregationForm({
               <field.CalendarField
                 placeholder="Pilih tanggal lahir"
                 label="Tanggal Lahir"
+                disabled={isPending}
               />
             )}
           </form.AppField>
@@ -79,6 +83,7 @@ export default function CongregationForm({
               <field.InputField
                 label="No. HP"
                 placeholder="Masukkan nomor HP"
+                disabled={isPending}
               />
             )}
           </form.AppField>
@@ -89,6 +94,7 @@ export default function CongregationForm({
                 label="Sektor"
                 items={regionItems}
                 placeholder="Pilih Sektor"
+                disabled={isPending}
               />
             )}
           </form.AppField>
@@ -100,6 +106,7 @@ export default function CongregationForm({
                 items={pelkatItems}
                 placeholder="Pilih Pelkat"
                 readOnly
+                disabled={isPending}
               />
             )}
           </form.AppField>

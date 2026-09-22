@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
 import { Ellipsis, Info, Pencil, Trash2 } from "lucide-react";
+import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -23,17 +23,19 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-import { Congregation } from "../types/congregation";
-import EditCongregationForm from "./edit-congregation-form";
-import { deleteCongregations } from "../api/congregation";
-import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "@/components/ui/toast";
+import { useQueryClient } from "@tanstack/react-query";
+import { deleteCongregations } from "../api/congregation";
+import { Congregation } from "../types/congregation";
+import CongregationDetailDialog from "./detail-congregation-dialog";
+import EditCongregationForm from "./edit-congregation-form";
 
 interface Props {
   congregation: Congregation;
 }
 
 export function CongregationActions({ congregation }: Props) {
+  const [detailOpen, setDetailOpen] = useState(false);
   const [editOpen, setEditOpen] = useState(false);
 
   const queryClient = useQueryClient();
@@ -61,7 +63,7 @@ export function CongregationActions({ congregation }: Props) {
 
         <DropdownMenuContent>
           <DropdownMenuGroup>
-            <DropdownMenuItem>
+            <DropdownMenuItem onClick={() => setDetailOpen(true)}>
               Detail
               <DropdownMenuShortcut>
                 <Info />
@@ -87,6 +89,12 @@ export function CongregationActions({ congregation }: Props) {
           </DropdownMenuGroup>
         </DropdownMenuContent>
       </DropdownMenu>
+
+      <CongregationDetailDialog
+        congregation={congregation}
+        open={detailOpen}
+        onOpenChange={setDetailOpen}
+      />
 
       <Dialog open={editOpen} onOpenChange={setEditOpen}>
         <DialogContent className="min-w-xl">
