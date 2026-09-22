@@ -2,6 +2,7 @@
 
 import {
   useTable,
+  type ColumnFiltersState,
   type ColumnVisibilityState,
   type ColumnDef,
   type RowData,
@@ -37,22 +38,44 @@ export function DataTable<TData extends RowData>({
   data,
 }: DataTableProps<TData>) {
   const [columnVisibility, setColumnVisibility] =
-    React.useState<ColumnVisibilityState>({});
+    React.useState<ColumnVisibilityState>({
+      id: false,
+      sidi: false,
+      "tahun sidi": false,
+      pelkat: false,
+    });
+
+  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
+    [],
+  );
 
   const table = useTable({
     features,
     data,
     columns,
     onColumnVisibilityChange: setColumnVisibility,
+    onColumnFiltersChange: setColumnFilters,
     state: {
       columnVisibility,
+      columnFilters,
     },
   });
+
+  const handleTabChange = (value: string) => {
+    if (value === "all") {
+      table.getColumn("aktif")?.setFilterValue(undefined);
+    } else if (value === "active") {
+      table.getColumn("aktif")?.setFilterValue(true);
+    } else if (value === "inactive") {
+      table.getColumn("aktif")?.setFilterValue(false);
+    }
+  };
 
   return (
     <div className="space-y-4">
       <div className="flex items-center">
-        <Tabs defaultValue={"all"}>
+        {/* 6. Hubungkan onValueChange ke handler */}
+        <Tabs defaultValue={"all"} onValueChange={handleTabChange}>
           <TabsList>
             <TabsTrigger value={"all"}>All</TabsTrigger>
             <TabsTrigger value={"active"}>Active</TabsTrigger>

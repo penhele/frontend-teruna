@@ -25,7 +25,7 @@ export default function AddCongregationForm() {
       defaultValues={{
         name: "",
         birth: "",
-        phone: "081234567890",
+        phone: "",
         pelkatId: "82e63a9b-9823-4699-b040-eddb076a33b1",
         regionId: "",
       }}

@@ -11,6 +11,9 @@ import ActiveBadge from "@/components/badges/active-badge";
 const columnHelper = createColumnHelper<DataTableFeatures, Congregation>();
 
 export const columms = columnHelper.columns([
+  columnHelper.accessor("id", {
+    header: "ID",
+  }),
   columnHelper.accessor("name", {
     id: "nama",
     header: "Nama Lengkap",
@@ -30,6 +33,10 @@ export const columms = columnHelper.columns([
   columnHelper.accessor("isActive", {
     id: "aktif",
     header: "Aktif",
+    filterFn: (row, columnId, filterValue) => {
+      if (filterValue === undefined) return true;
+      return Boolean(row.getValue(columnId)) === Boolean(filterValue);
+    },
     cell: ({ row }) => {
       return <ActiveBadge isActive={row.original.isActive} />;
     },

@@ -99,6 +99,7 @@ export default function CongregationForm({
                 label="Pelkat"
                 items={pelkatItems}
                 placeholder="Pilih Pelkat"
+                readOnly
               />
             )}
           </form.AppField>
