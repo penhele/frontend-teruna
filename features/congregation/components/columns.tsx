@@ -6,6 +6,7 @@ import { formatDate } from "@/lib/utils/date";
 import { createColumnHelper } from "@tanstack/react-table";
 import { Congregation } from "../types/congregation";
 import { CongregationActions } from "./congregation-actions";
+import ActiveBadge from "@/components/badges/active-badge";
 
 const columnHelper = createColumnHelper<DataTableFeatures, Congregation>();
 
@@ -29,6 +30,9 @@ export const columms = columnHelper.columns([
   columnHelper.accessor("isActive", {
     id: "aktif",
     header: "Aktif",
+    cell: ({ row }) => {
+      return <ActiveBadge isActive={row.original.isActive} />;
+    },
   }),
 
   columnHelper.accessor("isSidi", {
