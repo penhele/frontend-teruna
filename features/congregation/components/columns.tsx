@@ -1,13 +1,13 @@
 "use client";
 
+import ActiveStatus from "@/components/active-status";
 import SektorBadge from "@/components/badges/sektor-badge";
 import { type DataTableFeatures } from "@/components/layouts/data-table-features";
 import { formatDate } from "@/lib/utils/format-date";
+import { formatPhoneNumber } from "@/lib/utils/format-phone-number";
 import { createColumnHelper } from "@tanstack/react-table";
 import { Congregation } from "../types/congregation";
 import { CongregationActions } from "./congregation-actions";
-import ActiveBadge from "@/components/badges/active-badge";
-import ActiveStatus from "@/components/active-status";
 
 const columnHelper = createColumnHelper<DataTableFeatures, Congregation>();
 
@@ -22,6 +22,9 @@ export const columms = columnHelper.columns([
   columnHelper.accessor("phone", {
     id: "kontak",
     header: "Kontak",
+    cell: ({ row }) => {
+      return <span>{formatPhoneNumber(row.original.phone)}</span>;
+    },
   }),
   columnHelper.accessor("birth", {
     id: "tanggal lahir",
@@ -42,7 +45,6 @@ export const columms = columnHelper.columns([
       return (
         <ActiveStatus id={row.original.id} isActive={row.original.isActive} />
       );
-      // return <ActiveBadge isActive={row.original.isActive} />;
     },
   }),
 

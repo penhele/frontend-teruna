@@ -10,20 +10,45 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { ROUTES } from "@/constants/routes";
-import { Database, LayoutDashboard, SquareUser, Users } from "lucide-react";
+import {
+  Church,
+  Database,
+  LayoutDashboard,
+  SquareUser,
+  Users,
+} from "lucide-react";
 
 export function AppSidebar() {
   return (
     <Sidebar collapsible="icon">
-      <SidebarHeader />
+      <SidebarHeader>
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <SidebarMenuButton>
+              <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
+                <Church />
+              </div>
+              <div className="flex flex-col justify-center">
+                <span>Dashboard</span>
+                <span>Persekutuan Teruna </span>
+              </div>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+        </SidebarMenu>
+      </SidebarHeader>
+
       <SidebarContent>
         <SidebarGroup>
           <SidebarMenu>
             <SidebarMenuItem>
-              <SidebarMenuButton>
-                <LayoutDashboard />
-                Dashboard
-              </SidebarMenuButton>
+              <SidebarMenuButton
+                render={
+                  <a>
+                    <LayoutDashboard />
+                    Dashboard
+                  </a>
+                }
+              ></SidebarMenuButton>
             </SidebarMenuItem>
           </SidebarMenu>
         </SidebarGroup>
@@ -35,7 +60,7 @@ export function AppSidebar() {
             <SidebarMenuItem>
               <SidebarMenuButton
                 render={
-                  <a href={ROUTES.DASHBOARD_DATABASE}>
+                  <a href={ROUTES.DASHBOARD_DATABASE_PT}>
                     <Users />
                     Teruna
                   </a>
@@ -45,7 +70,7 @@ export function AppSidebar() {
             <SidebarMenuItem>
               <SidebarMenuButton
                 render={
-                  <a href={ROUTES.DASHBOARD_DATABASE}>
+                  <a href={ROUTES.DASHBOARD_DATABASE_KAKAK_LAYAN}>
                     <SquareUser />
                     Kakak Layan
                   </a>
